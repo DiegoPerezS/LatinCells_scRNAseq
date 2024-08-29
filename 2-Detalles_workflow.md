@@ -7,7 +7,7 @@ Para comenzar a utilizar el Flujo de Trabajo de este tutorial:
 
 
 
-    * En la barra de Historial, titulada **“History”**, debe presionar el ícono **“+”**, y darle un título al historial seleccionando el actual título, **“Unnamed history”.**
+* En la barra de Historial, titulada **“History”**, debe presionar el ícono **“+”**, y darle un título al historial seleccionando el actual título, **“Unnamed history”.**
 
 ![detalles_1](../Imagenes/2_historial.png)
 
@@ -16,13 +16,13 @@ Para comenzar a utilizar el Flujo de Trabajo de este tutorial:
 
 
 
-    * En la barra de herramientas, titulada **“Tools”**, debe presionar el ícono de subir datos a Galaxy, indicado en la siguiente imagen.
+* En la barra de herramientas, titulada **“Tools”**, debe presionar el ícono de subir datos a Galaxy, indicado en la siguiente imagen.
 
 ![detalles_2](../Imagenes/3_importar_datos.png)
 
 
 
-    * A lo largo de este tutorial, usaremos la opción de **“Paste/Fetch data”**, en el cuadro de texto, debe pegar los enlaces adjuntos al inicio de cada parte de este tutorial, y presionar **“Start”**. Los archivos comenzarán a cargarse al historial y debe esperar a que este proceso termine, indicado visualmente cuando el archivo en el historial cambia de color amarillo a verde. 
+* A lo largo de este tutorial, usaremos la opción de **“Paste/Fetch data”**, en el cuadro de texto, debe pegar los enlaces adjuntos al inicio de cada parte de este tutorial, y presionar **“Start”**. Los archivos comenzarán a cargarse al historial y debe esperar a que este proceso termine, indicado visualmente cuando el archivo en el historial cambia de color amarillo a verde. 
 
 
 ### Descargar Flujo de Trabajo que desee utilizar:
