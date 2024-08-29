@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preparación de datos para el análisis &#8212; Agrupacion</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '13-Preparacion_para_analisis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Visualización de objeto AnnData" href="12-Visualizacion_anndata.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="1-Aspectos_generales.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Agrupacion - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Agrupacion - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="1-Aspectos_generales.html">
+                    Análisis de secuenciación de célula única con Galaxy
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Galaxy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2-Detalles_workflow.html">Introducción al Flujo de Trabajo en Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-Detalles_modulos.html">Detalles de los módulos del Flujo de Trabajo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-Cambio_versi%C3%B3n.html">Cambiar la versión de la herramienta en un módulo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-Copiar_entre_historiales.html">Copiar set de datos entre historiales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-Importar_historial.html">Importar historial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="7-8-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9-Transcrito_a_gen.html">Generación de mapas de transcrito a gen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Concatenar_datos.html">Concatenar set de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preparación de datos para el análisis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/13-Preparacion_para_analisis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preparación de datos para el análisis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-sexo-pt-1">12: Agregar metadata – Sexo – Pt 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-sexo-pt-2">14: Agregar metadata – Sexo – Pt 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-genotipo-pt-1">13: Agregar metadata – Genotipo – Pt 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-genotipo-pt-2">15: Agregar metadata – Genotipo – Pt 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#juntar-metadata">16: Juntar Metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-metadata-a-objeto-anndata">17: Integración de metadata a objeto AnnData</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-de-muestras">18: Identificación de muestras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anotacion-de-lecturas-mitocondriales">19: Anotación de lecturas mitocondriales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="preparacion-de-datos-para-el-analisis">
+<h1>Preparación de datos para el análisis<a class="headerlink" href="#preparacion-de-datos-para-el-analisis" title="Link to this heading">#</a></h1>
+<p>Cabe destacar, que dependiendo del método en el que se hayan importado los sets de datos de entrenamiento de este tutorial, o de igual forma, los archivos que se hayan utilizado mediante los métodos para <strong>Importar el historial</strong>, podrían estar desordenados, como se menciona en la explicación de la <strong>Parte 2</strong>, por lo que debe tener cuidado de corregir los ajustes de estos pasos de acuerdo a su conveniencia. Además, esta metadata puede ser cualquiera que el usuario desee agregar, por lo que estos pasos son totalmente adaptables a cualquier experimento que se desee analizar.** **</p>
+<section id="agregar-metadata-sexo-pt-1">
+<h2>12: Agregar metadata – Sexo – Pt 1<a class="headerlink" href="#agregar-metadata-sexo-pt-1" title="Link to this heading">#</a></h2>
+<p>En este paso agregaremos la información del sexo de las muestras que estamos analizando, para esto tomaremos el número de la columna “batch”, que configuramos en el <strong>Paso 8</strong>, numeración 5.</p>
+<p>Esto lo podremos hacer conociendo el orden en el que se importaron los sets de datos y la tabla “Experimental_Design.tabular” que descargamos junto a estos. El número del orden de importación de los sets de datos va de 0 a 6 en este caso, partiendo desde el set de datos N701 hasta el N707 (si es que todo fue importado en el orden que corresponde), este número es el que fue asignado en la Columna 8, en esta tabla, podemos ver también que la primera fila corresponde al encabezado de la tabla y que nos confirma que corresponde a “batch”. Tomando en cuenta esto, si nosotros confeccionamos una tabla que contenga el diseño experimental y el orden en el que se importaron los sets de datos, obtendríamos algo como esto:</p>
+<p>Index	Batch	Genotype	Sex</p>
+<p>N701	0	wildtype	male</p>
+<p>N702	1	knockout	male</p>
+<p>N703	2	knockout	female</p>
+<p>N704	3	wildtype	male</p>
+<p>N705	4	wildtype	male</p>
+<p>N706	5	wildtype	male</p>
+<p>N707	6	knockout	male</p>
+<p>Esta tabla no es necesaria, es sólo un ejemplo para poder visualizar de mejor forma a qué corresponde cada número en la columna “batch” y así poder trabajar correctamente con nuestros sets de datos.</p>
+<p>Utilizar herramienta <strong>“Replace Text in a specific column”</strong> (9.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p><em>File to process: output of Inspect AnnData:</em> Información de las células</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>File to process”</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>1: Replacement:</em></p>
+<ol class="arabic simple">
+<li><p><em>in column:</em> 8</p>
+<ul class="simple">
+<li><p>O la columna en donde esté “batch”</p></li>
+</ul>
+</li>
+<li><p><em>Find pattern:</em> 0|1|3|4|5|6</p>
+<ul class="simple">
+<li><p>Aquí se colocan los valores de “batch” que contengan la información que deseamos agregar, en este caso, las muestras que corresponden a machos. En este parámetro se pueden ocupar expresiones regulares, en este caso el carácter “|” significa ó, lo que se traduciría en encontrar 0, ó 1, ó 3…</p></li>
+</ul>
+</li>
+<li><p><em>Replace with:</em> male</p>
+<ul class="simple">
+<li><p>En este caso, es el sexo que corresponde con el número de “batch”</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><em>2. Replacement:</em>
+4. <em>in column:</em> 8
+5. <em>Find pattern:</em> 2
+6. <em>Replace with:</em> female</p></li>
+<li><p><em>3. Replacement:</em>
+7. <em>in column:</em> 8
+8. <em>Find pattern:</em> batch
+9. <em>Replace with:</em> sex</p></li>
+<li><p><em>Configure Ouput: ‘outfile’</em>
+10. <em>Label:</em> Agegar metadata – Sexo – Pt 1
+11. <em>Rename dataset:</em> Agegar metadata – Sexo – Pt 1</p></li>
+</ol>
+</section>
+<section id="agregar-metadata-sexo-pt-2">
+<h2>14: Agregar metadata – Sexo – Pt 2<a class="headerlink" href="#agregar-metadata-sexo-pt-2" title="Link to this heading">#</a></h2>
+<p>Utilizar herramienta <strong>“Replace Text in a specific column”</strong> (9.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p><em>File to process: output of Inspect AnnData:</em></p></li>
+<li><p><em>Cut columns:</em> c8</p></li>
+<li><p><em>Delimited by:</em> Tab</p></li>
+<li><p><em>From:</em> Agegar metadata – Sexo – Pt 1</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>From</em>” en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>Configure Ouput: ‘outfile’</em></p>
+<ol class="arabic simple">
+<li><p><em>Label:</em> Metadata – Sexo</p></li>
+<li><p><em>Rename dataset:</em> Metadata – Sexo</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="agregar-metadata-genotipo-pt-1">
+<h2>13: Agregar metadata – Genotipo – Pt 1<a class="headerlink" href="#agregar-metadata-genotipo-pt-1" title="Link to this heading">#</a></h2>
+<p>Ahora agregaremos la información correspondiente al genotipo, del mismo modo que agregamos la información en el <strong>Paso 12</strong>.</p>
+<p>Utilizar herramienta <strong>“Replace Text in a specific column”</strong> (9.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p><em>File to process: output of Inspect AnnData:</em> Información de las células</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>File to process</em>” en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>1: Replacement:</em></p>
+<ol class="arabic simple">
+<li><p><em>in column:</em> 8</p></li>
+<li><p><em>Find pattern:</em> 0|3|4|5</p></li>
+<li><p><em>Replace with:</em> wildtype</p></li>
+</ol>
+</li>
+<li><p><em>2. Replacement:</em>
+4. <em>in column:</em> 8
+5. <em>Find pattern:</em> 1|2|6
+6. <em>Replace with:</em> knockout</p></li>
+<li><p><em>3. Replacement:</em>
+7. <em>in column:</em> 8
+8. <em>Find pattern:</em> batch
+9. <em>Replace with:</em> genotype</p></li>
+<li><p><em>Configure Ouput: ‘outfile’</em>
+10. <em>Label:</em> Agegar metadata – Genotipo – Pt 1
+11. <em>Rename dataset:</em> Agegar metadata – Genotipo – Pt 1</p></li>
+</ol>
+</section>
+<section id="agregar-metadata-genotipo-pt-2">
+<h2>15: Agregar metadata – Genotipo – Pt 2<a class="headerlink" href="#agregar-metadata-genotipo-pt-2" title="Link to this heading">#</a></h2>
+<p>Utilizar herramienta <strong>“Replace Text in a specific column”</strong> (9.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p><em>File to process: output of Inspect AnnData:</em></p></li>
+<li><p><em>Cut columns:</em> c8</p></li>
+<li><p><em>Delimited by:</em> Tab</p></li>
+<li><p><em>From:</em> Agegar metadata – Genotipo – Pt 1</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>From</em>” en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>Configure Ouput: ‘outfile’</em></p>
+<ol class="arabic simple">
+<li><p><em>Label:</em> Metadata – Genotipo</p></li>
+<li><p><em>Rename dataset:</em> Metadata – Genotipo</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="juntar-metadata">
+<h2>16: Juntar Metadata<a class="headerlink" href="#juntar-metadata" title="Link to this heading">#</a></h2>
+<p>Ahora que tenemos la información de interés, que en este caso es Genotipo y Sexo, podemos juntar esta información. Cabe destacar, que para otros experimentos que en donde no aplique separar muestras por genotipo o sexo, podemos cambiar los parámetros de las herramientas utilizadas entre el <strong>Paso 12 y 15</strong>, o incluso agregar repeticiones de estos pasos para agregar más información.</p>
+<p>Utilizar herramienta <strong>“Paste two files side by side”</strong> con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p><em>Paste:</em> Metadata - Genotipo</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>“Paste”</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>and:</em> Metadata - Sexo</p>
+<ol class="arabic simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>“and”</em> en el módulo.</p></li>
+</ol>
+</li>
+<li><p><em>Delimit by:</em> Tab</p></li>
+<li><p><em>Configure Ouput: ‘out_file1’</em>
+3. <em>Label:</em> Metadata - Células
+4. _Rename dataset: _Metadata – Células</p></li>
+</ol>
+</section>
+<section id="integracion-de-metadata-a-objeto-anndata">
+<h2>17: Integración de metadata a objeto AnnData<a class="headerlink" href="#integracion-de-metadata-a-objeto-anndata" title="Link to this heading">#</a></h2>
+<p>Al tener la metadata creada en una tabla no podríamos usarla en nuestros análisis, por esto es necesario agregarla a nuestro objeto AnnData que contiene toda la información de nuestras muestras de secuenciación de célula única.</p>
+<p>Utilizar herramienta <strong>“Manipulate AnnData”</strong> (0.10.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p>_Annotated data matrix: _Objeto combinado</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>“Annotated data matrix”</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p>_Function to manipulate the object: _Add new annotation(s) for observations or variables</p></li>
+<li><p>_What to annotate?: _Observations (obs)</p></li>
+<li><p>_Table with new annotations: _Metadata - Células</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>“Table with new annotations”</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p><em>Configure Ouput: ‘anndata’</em></p>
+<ul class="simple">
+<li><p><em>Label:</em> Objeto AnnData con metadata</p></li>
+<li><p>_Rename dataset: _Objeto AnnData con metadata</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="identificacion-de-muestras">
+<h2>18: Identificación de muestras<a class="headerlink" href="#identificacion-de-muestras" title="Link to this heading">#</a></h2>
+<p>Antes de seguir, es una buena idea cambiar el significado de el dato “batch” a algo que nos sea de utilidad de una forma más directa. Siendo que “batch” contiene el orden en el que fueron importados los datos de cada muestra, lo mejor sería poder identificar la muestra como tal.</p>
+<p>Utilizar herramienta <strong>“Manipulate AnnData”</strong> (0.10.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p>_Annotated data matrix: _Objeto combinado`</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>“Annotated data matrix”</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p>_Function to manipulate the object: _Rename categories of annotation</p></li>
+<li><p><em>Key for observations or variables annotation: batch</em></p></li>
+<li><p>_Comma-separated list of new categories: _N701,N702,N703,N704,N705,N706,N707</p></li>
+<li><p><em>Configure Ouput: ‘anndata’</em></p>
+<ul class="simple">
+<li><p><em>Label:</em> Objeto AnnData con metadata corregida</p></li>
+<li><p>_Rename dataset: _Objeto AnnData con metadata corregida</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="anotacion-de-lecturas-mitocondriales">
+<h2>19: Anotación de lecturas mitocondriales<a class="headerlink" href="#anotacion-de-lecturas-mitocondriales" title="Link to this heading">#</a></h2>
+<p>Para terminar de preparar nuestro objeto AnnData preprocesado, necesitamos anotar los genes mitocondriales que ya habíamos definido en la <strong>Parte 1</strong>.</p>
+<p>Utilizar herramienta <strong>“AnnData Operations”</strong> (7.9.3+galaxy0) con los siguientes ajustes:</p>
+<ol class="arabic simple">
+<li><p>_Input object in hdf5 AnnData format: _Objeto AnnData con metadata corregida</p>
+<ul class="simple">
+<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
+<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección <em>Input object in hdf5 AnnData format</em> en el módulo.</p></li>
+</ul>
+</li>
+<li><p>_Format of output object: _AnnData format</p></li>
+<li><p>_Gene symbols field in AnnData: _NA.</p></li>
+<li><p>_Flag genes that start with these names: _</p>
+<ol class="arabic simple">
+<li><p>_Starts with: _True</p></li>
+<li><p>_Var name: _mito</p></li>
+</ol>
+</li>
+<li><p><em>Configure Ouput: ‘anndata’</em>
+3. <em>Label:</em> Objeto Anndata anotado
+4. _Rename dataset: _Objeto Anndata anotado</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="12-Visualizacion_anndata.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Visualización de objeto AnnData</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-sexo-pt-1">12: Agregar metadata – Sexo – Pt 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-sexo-pt-2">14: Agregar metadata – Sexo – Pt 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-genotipo-pt-1">13: Agregar metadata – Genotipo – Pt 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-metadata-genotipo-pt-2">15: Agregar metadata – Genotipo – Pt 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#juntar-metadata">16: Juntar Metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-metadata-a-objeto-anndata">17: Integración de metadata a objeto AnnData</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificacion-de-muestras">18: Identificación de muestras</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anotacion-de-lecturas-mitocondriales">19: Anotación de lecturas mitocondriales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By LatinCells
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

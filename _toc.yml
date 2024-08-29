@@ -1,0 +1,20 @@
+format: jb-book
+root: 1-Aspectos_generales
+parts:
+  - caption: Introducción a Galaxy
+    chapters:
+    - file: 2-Detalles_workflow
+    - file: 3-Detalles_modulos
+    - file: 4-Cambio_versión
+    - file: 5-Copiar_entre_historiales
+    - file: 6-Importar_historial
+  - caption: Parte 1 - Generación de matrices de células únicas usando Alevin
+    chapters:
+    - file: 7-8-Datos
+    - file: 9-Transcrito_a_gen
+  - caption: Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento
+    chapters:
+    - file: 10-Datos
+    - file: 11-Concatenar_datos
+    - file: 12-Visualizacion_anndata
+    - file: 13-Preparacion_para_analisis
