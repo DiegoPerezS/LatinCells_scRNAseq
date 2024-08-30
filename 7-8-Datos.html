@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Datos &#8212; Agrupacion</title>
+    <title>Parte 1: Generación de matrices de células únicas usando Alevin &#8212; Agrupacion</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -60,8 +60,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '7-8-Datos';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Generación de mapas de transcrito a gen" href="9-Transcrito_a_gen.html" />
-    <link rel="prev" title="Importar historial" href="6-Importar_historial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,6 +121,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -186,13 +186,15 @@
 <li class="toctree-l1"><a class="reference internal" href="6-Importar_historial.html">Importar historial</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Datos</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="7-Parte_1.html">Parte 1: Generación de matrices de células únicas usando Alevin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8-Datos.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9-Transcrito_a_gen.html">Generación de mapas de transcrito a gen</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Parte 2: Combinar set de datos de secuenciación de célula única luego del preprocesamiento</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="11-Concatenar_datos.html">Concatenar set de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-Preparacion_para_analisis.html">Preparación de datos para el análisis</a></li>
@@ -321,7 +323,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -332,11 +336,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Datos</h1>
+    <h1>Parte 1: Generación de matrices de células únicas usando Alevin</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -346,7 +358,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>Adaptado desde la página de entrenamiento en Galaxy:</p>
+  <section id="parte-1-generacion-de-matrices-de-celulas-unicas-usando-alevin">
+<h1>Parte 1: Generación de matrices de células únicas usando Alevin<a class="headerlink" href="#parte-1-generacion-de-matrices-de-celulas-unicas-usando-alevin" title="Link to this heading">#</a></h1>
+<p>Adaptado desde la página de entrenamiento en Galaxy:</p>
 <p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-case_alevin/tutorial.html">https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-case_alevin/tutorial.html</a></p>
 <p>En esta primera parte se tomarán los datos crudos en formato FASTQ y serán llevados a un formato de matriz de células y genes en formato AnnData, el cual será usado en el siguiente paso. Este análisis se enfoca en identificar y asignar los genes expresados en cada célula secuenciada en un formato de matriz en donde la primera columna corresponde a las células, la primera fila a los genes, y el contenido las lecturas asignadas para X gen en Y célula.</p>
 <p>Para esto, se usará la aproximación basada en gotas (en lugar de la metodología basada en placa), ya que esta aproximación es la que más se diferencia de otras desarrolladas para secuenciación de RNA completo. La aproximación basada en gotas tiene tres componentes: <strong>códigos de barra para cada célula, identificadores moleculares únicos (UMIs), y</strong> <strong>lecturas de cDNA</strong>, estos componentes serán utilizados para asignar la cuantificación de lecturas para cada célula de la siguiente forma:</p>
@@ -357,18 +371,18 @@ document.write(`
 </ul>
 <p>Cabe mencionar, que este paso debe ser realizado para cada muestra de secuenciación de célula única que analicemos, por lo que, si son 6 muestras, esta parte del tutorial debe repetirse la misma cantidad de veces.</p>
 <section id="datos">
-<h1>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h1>
+<h2>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* (Puede encontrar el archivo GTF y el transcriptoma en formato FASTA de su especie de interés en ENSEMBL, dentro del siguiente enlace: http://www.ensembl.org/info/data/ftp/index.html/)
-
-```
-https://zenodo.org/record/4574153/files/Experimental_Design.tabular
-https://zenodo.org/record/4574153/files/Mus_musculus.GRCm38.100.gtf.gff
-https://zenodo.org/record/4574153/files/Mus_musculus.GRCm38.cdna.all.fa.fasta
-https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_1.fq-400k.fastq
-https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_2.fq-400k.fastq
-```
-
-* Una vez cargados los archivos, se debe cambiar el nombre de:
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">4574153</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">Experimental_Design</span><span class="o">.</span><span class="n">tabular</span>
+    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">4574153</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="o">.</span><span class="n">GRCm38</span><span class="mf">.100</span><span class="o">.</span><span class="n">gtf</span><span class="o">.</span><span class="n">gff</span>
+    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">4574153</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="o">.</span><span class="n">GRCm38</span><span class="o">.</span><span class="n">cdna</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">fa</span><span class="o">.</span><span class="n">fasta</span>
+    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">4574153</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">SLX</span><span class="o">-</span><span class="mf">7632.</span><span class="n">TAAGGCGA</span><span class="o">.</span><span class="n">N701</span><span class="o">.</span><span class="n">s_1</span><span class="o">.</span><span class="n">r_1</span><span class="o">.</span><span class="n">fq</span><span class="o">-</span><span class="mi">400</span><span class="n">k</span><span class="o">.</span><span class="n">fastq</span>
+    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">4574153</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">SLX</span><span class="o">-</span><span class="mf">7632.</span><span class="n">TAAGGCGA</span><span class="o">.</span><span class="n">N701</span><span class="o">.</span><span class="n">s_1</span><span class="o">.</span><span class="n">r_2</span><span class="o">.</span><span class="n">fq</span><span class="o">-</span><span class="mi">400</span><span class="n">k</span><span class="o">.</span><span class="n">fastq</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Una vez cargados los archivos, se debe cambiar el nombre de:
     * SLX-7632.TAAGGCGA.N701.s_1.r_1.fq-400k:  N701-Read1
     * SLX-7632.TAAGGCGA.N701.s_1.r_2.fq-400k: N701-Read2
 </pre></div>
@@ -443,6 +457,7 @@ https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_2.fq-400k.f
 </table>
 <p>En este tutorial se utilizará únicamente el set de datos de la primera fila, haciendo que este primer acercamiento sea más rápido.</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -474,30 +489,27 @@ https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_2.fq-400k.f
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="6-Importar_historial.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Importar historial</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="9-Transcrito_a_gen.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Generación de mapas de transcrito a gen</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

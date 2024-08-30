@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Visualización de objeto AnnData" href="12-Visualizacion_anndata.html" />
-    <link rel="prev" title="Datos" href="10-Datos.html" />
+    <link rel="prev" title="Combinar set de datos de secuenciación de célula única luego del preprocesamiento" href="10-Parte_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,14 +185,16 @@
 <li class="toctree-l1"><a class="reference internal" href="5-Copiar_entre_historiales.html">Copiar set de datos entre historiales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6-Importar_historial.html">Importar historial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="7-8-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-Parte_1.html">Generación de matrices de células únicas usando Alevin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8-Datos.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9-Transcrito_a_gen.html">Generación de mapas de transcrito a gen</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Parte_2.html">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Concatenar set de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-Preparacion_para_analisis.html">Preparación de datos para el análisis</a></li>
@@ -363,12 +365,13 @@ document.write(`
 <p>En este paso todos los archivos, que serían objetos AnnData formato h5ad serán concatenados en un solo objeto del mismo formato.</p>
 <p>Utilizar herramienta <strong>“Manipulate AnnData”</strong> (0.10.3+galaxy0) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p>_Annotated data matrix: _N701-400k</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Annotated data matrix</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p><em>Annotated data matrix:</em> N701-400k</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Annotated data matrix</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
 <li><p><em>Function to manipulate the object:</em> Concatenate along the observations axis</p></li>
 <li><p><em>Annotated data matrix to add:</em> Conectar/Seleccionar todos los otros archivos. Recordar que el set de datos N701 ya fue ingresado a la herramienta anteriormente.</p></li>
 <li><p><em>Join method:</em> Intersection of variables</p></li>
@@ -376,8 +379,8 @@ document.write(`
 <li><p><em>Separator to join the existing index names with the batch category:</em> -</p></li>
 <li><p><em>Configure Output: ‘anndata’</em></p>
 <ul class="simple">
-<li><p>_Label: _AnnData Combinado</p></li>
-<li><p>_Rename dataset: _AnnData Combinado</p></li>
+<li><p><em>Label:</em> AnnData Combinado</p></li>
+<li><p><em>Rename dataset:</em> AnnData Combinado</p></li>
 </ul>
 </li>
 </ol>
@@ -416,12 +419,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="10-Datos.html"
+       href="10-Parte_2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Datos</p>
+        <p class="prev-next-title">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</p>
       </div>
     </a>
     <a class="right-next"

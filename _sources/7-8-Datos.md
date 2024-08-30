@@ -1,3 +1,5 @@
+# Parte 1: Generación de matrices de células únicas usando Alevin
+
 Adaptado desde la página de entrenamiento en Galaxy:
 
 [https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-case_alevin/tutorial.html](https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-case_alevin/tutorial.html)
@@ -16,13 +18,13 @@ Cabe mencionar, que este paso debe ser realizado para cada muestra de secuenciac
 
     * (Puede encontrar el archivo GTF y el transcriptoma en formato FASTA de su especie de interés en ENSEMBL, dentro del siguiente enlace: http://www.ensembl.org/info/data/ftp/index.html/)
 
-    ```
+```
     https://zenodo.org/record/4574153/files/Experimental_Design.tabular
     https://zenodo.org/record/4574153/files/Mus_musculus.GRCm38.100.gtf.gff
     https://zenodo.org/record/4574153/files/Mus_musculus.GRCm38.cdna.all.fa.fasta
     https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_1.fq-400k.fastq
     https://zenodo.org/record/4574153/files/SLX-7632.TAAGGCGA.N701.s_1.r_2.fq-400k.fastq
-    ```
+```
 
     * Una vez cargados los archivos, se debe cambiar el nombre de:
         * SLX-7632.TAAGGCGA.N701.s_1.r_1.fq-400k:  N701-Read1

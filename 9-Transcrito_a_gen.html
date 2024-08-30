@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '9-Transcrito_a_gen';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Datos" href="10-Datos.html" />
-    <link rel="prev" title="Datos" href="7-8-Datos.html" />
+    <link rel="next" title="Combinar set de datos de secuenciación de célula única luego del preprocesamiento" href="10-Parte_2.html" />
+    <link rel="prev" title="Datos" href="8-Datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,14 +185,16 @@
 <li class="toctree-l1"><a class="reference internal" href="5-Copiar_entre_historiales.html">Copiar set de datos entre historiales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6-Importar_historial.html">Importar historial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="7-8-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-Parte_1.html">Generación de matrices de células únicas usando Alevin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8-Datos.html">Datos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Generación de mapas de transcrito a gen</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Parte_2.html">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="11-Concatenar_datos.html">Concatenar set de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-Preparacion_para_analisis.html">Preparación de datos para el análisis</a></li>
@@ -376,33 +378,37 @@ document.write(`
 <p>En caso de utilizar <em>spike-ins</em> (transcritos conocidos en una concentración conocida utilizados para calibrar las cuantificaciones en ensayos de hibridización de RNA), se deben agregar tanto al transcriptoma como al mapa de transcrito a gen.</p>
 <p>Utilizar herramienta <strong>“GTF2GeneList”</strong> (1.52.0+galaxy0) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p>_Ensembl GTF file:  _Data input ‘gtf_input’ (gff)</p></li>
-<li><p>_Feature type for which to derive annotation: <em>transcript</em> _</p></li>
-<li><p>_Field to place first in output table: _transcript_id (nombre de la columna que corresponda al identificador (ID) de los transcritos)</p></li>
-<li><p>_Suppress header line in output?: _Yes (La siguiente herramienta, Alevin, no necesita el encabezado de la tabla)</p></li>
-<li><p>_Comma-separated list of field names to extract from the GTF (default: use all fields): _transcript_id,gene_id (Esto ordena las columnas de los identificadores en IDs de transcritos y IDs de genes)</p></li>
-<li><p>_Append version to transcript identifiers?: _Yes (Son necesarios al trabajar con transcriptoma)</p></li>
-<li><p>_Flag mitochondrial features?: _No</p></li>
-<li><p>_Provide a cDNA file for extracting annotations and/ or possible filtering?: _Yes</p>
+<li><p><em>Ensembl GTF file:</em> Data input ‘gtf_input’ (gff)</p></li>
+<li><p><em>Feature type for which to derive annotation:</em> transcript</p></li>
+<li><p><em>Field to place first in output table:</em> transcript_id<br />
+<sup>Nombre de la columna que corresponda al identificador (ID) de los transcritos</sup></p></li>
+<li><p><em>Suppress header line in output?:</em> Yes<br />
+<sup>La siguiente herramienta, Alevin, no necesita el encabezado de la tabla</sup></p></li>
+<li><p><em>Comma-separated list of field names to extract from the GTF (default: use all fields):</em> transcript_id,gene_id<br />
+<sup>Esto ordena las columnas de los identificadores en IDs de transcritos y IDs de genes</sup></p></li>
+<li><p><em>Append version to transcript identifiers?:</em> Yes<br />
+<sup>Son necesarios al trabajar con transcriptoma</sup></p></li>
+<li><p><em>Flag mitochondrial features?:</em> No</p></li>
+<li><p><em>Provide a cDNA file for extracting annotations and/ or possible filtering?:</em> Yes</p>
 <ul class="simple">
-<li><p>_FASTA-format cDNA/transcript file: _Data input ‘fasta_input’ (fasta or fasta.gz)</p></li>
-<li><p>_Annotation field to match with sequences: _transcript_id</p></li>
-<li><p>_Parse the FASTA headers for annotation info?: _ No</p></li>
-<li><p>_Filter the cDNA file to match the annotations?: _Yes</p></li>
+<li><p><em>FASTA-format cDNA/transcript file:</em> Data input ‘fasta_input’ (fasta or fasta.gz)</p></li>
+<li><p><em>Annotation field to match with sequences:</em> transcript_id</p></li>
+<li><p><em>Parse the FASTA headers for annotation info?:</em> No</p></li>
+<li><p><em>Filter the cDNA file to match the annotations?:</em> Yes</p></li>
 </ul>
 </li>
 <li><p><em>Additional options</em></p>
 <ul class="simple">
 <li><p><em>Configure Output: ‘feature_annotation’</em></p>
 <ul>
-<li><p>_Label: _Transcrito a gen</p></li>
-<li><p>_Rename dataset: _Transcrito a gen</p></li>
+<li><p><em>Label:</em> Transcrito a gen</p></li>
+<li><p><em>Rename dataset:</em> Transcrito a gen</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘fasta_output’</em></p>
 <ul>
-<li><p>_Label: _archivo fasta</p></li>
-<li><p>_Rename dataset: _archivo fasta filtrado</p></li>
+<li><p><em>Label:</em> archivo fasta</p></li>
+<li><p><em>Rename dataset:</em> archivo fasta filtrado</p></li>
 </ul>
 </li>
 </ul>
@@ -412,46 +418,51 @@ document.write(`
 <section id="generacion-de-indice-y-cuantificacion">
 <h2>7: Generación de índice y cuantificación<a class="headerlink" href="#generacion-de-indice-y-cuantificacion" title="Link to this heading">#</a></h2>
 <p>A modo general, el proceso de alineamiento necesita de un índice que puede ser generado a partir de un genoma o un transcriptoma dependiendo del estudio (en este caso estamos trabajando con un transcriptoma). Este índice es una conversión del formato FASTA en el cual se encuentra el transcriptoma a un archivo en formato binario que es mucho más fácil de leer y buscar información. Este archivo binario no es legible para un humano, por lo que no podemos abrir el archivo y revisarlo visualmente para comprobar qué contiene. El índice, al ser generado desde el genoma de referencia de la especie de estudio, puede ser actualizado si se lanza una nueva versión, o si por el contrario, queremos contrastar nuestros resultados de alineamiento con otra versión del genoma que provenga de otra base de datos.</p>
-<p>Utilizar herramienta <strong>“Alevin”</strong> (1.10.1+galaxy0)* con los siguientes ajustes:</p>
-<p>*** **Al buscar Alevin podríamos no encontrarlo directamente, si tiene este problema, debe buscarlo dentro de la pestaña “Single Cell”</p>
+<p>Utilizar herramienta <strong>“Alevin”</strong> (1.10.1+galaxy0)* con los siguientes ajustes:<br />
+<sup> * Al buscar Alevin podríamos no encontrarlo directamente, si tiene este problema, debe buscarlo dentro de la pestaña “Single Cell” </sup></p>
 <ol class="arabic simple">
 <li><p><em>Select a reference transcriptome from your history or use a built-in index?:</em>  Use one from the history</p>
 <ul class="simple">
-<li><p><em>Salmon index:</em></p></li>
-<li><p><em>Kmer length</em>: 31</p></li>
+<li><p><em>Salmon index:</em></p>
+<ul>
+<li><p><em>Kmer length:</em> 31</p></li>
 </ul>
 </li>
-<li><p><em>Single or paired-end read_s?:</em> _Paired-end</p></li>
-<li><p><em>Single or paired-end reads?:</em> Paired-end</p>
+</ul>
+</li>
+<li><p><em>Single or paired-end reads?:</em> Paired-end<br />
+<sup>Hacer coincidir archivo de salida de Read 1 con Mate 1 y Read 2 con Mate 2. De no trabajar en un flujo de trabajo, seleccionar manualmente estos archivos en la configuración de la herramienta</sup></p>
 <ul class="simple">
-<li><p>*****Hacer coincidir archivo de salida de Read 1 con Mate 1 y Read 2 con Mate 2. De no trabajar en un flujo de trabajo, seleccionar manualmente estos archivos en la configuración de la herramienta</p></li>
 <li><p><em>Specify the strandedness of the reads:</em> Infer automatically (A)</p></li>
 </ul>
 </li>
 <li><p><em>Type of single-cell protocol</em>: DropSeq Single Cell protocol</p></li>
-<li><p>_Extra output files _(marcar casilla de las siguientes opciones):</p>
+<li><p><em>Extra output files</em> (marcar casilla de las siguientes opciones):</p>
 <ul class="simple">
 <li><p>Salmon Quant log file</p></li>
-<li><p>Features used by the CB classification and their counts at each cell level (–dumpFeatures)</p></li>
-<li><p>*** Cuidado:** “<em>Per cell level parsimonioes Umi graph (-dumpUmiGraph)</em>” genera un archivo para cada célula. Esto no es necesario para este tutorial</p></li>
+<li><p>Features used by the CB classification and their counts at each cell level (–dumpFeatures)</p>
+<ul>
+<li><p><strong>Cuidado:</strong> “<em>Per cell level parsimonioes Umi graph (-dumpUmiGraph)</em>” genera un archivo para cada célula. Esto no es necesario para este tutorial</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><em>Advanced options:</em></p>
 <ul class="simple">
-<li><p><em>Dump cell v transcripts count matrix in MTX format</em>: Yes</p></li>
+<li><p><em>Dump cell v transcripts count matrix in MTX format:</em> Yes</p></li>
 </ul>
 </li>
-<li><p><em>Aditional options:</em></p>
+<li><p><em>Aditional options:</em><br />
+<sup> <strong>En esta sección puede configurar qué archivos de salida desea generar, así como los nombres de estos archivos para una identificación más eficaz luego de que concluya el Flujo de Trabajo</strong></sup></p>
 <ul class="simple">
-<li><p><em><em>_</em> En esta sección puede configurar qué archivos de salida desea generar, así como los nombres de estos archivos para una identificación más eficaz luego de que concluya el Flujo de Trabajo_</em>*</p></li>
 <li><p><em>Configure Output: ‘quants_mat_mtx’</em></p>
 <ul>
-<li><p>_Label: _matriz_conteo_genes</p></li>
+<li><p><em>Label:</em> matriz_conteo_genes</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘quants_mat_cols_txt</em></p>
 <ul>
-<li><p>_Label: _IDs_genes</p></li>
+<li><p><em>Label:</em> IDs_genes</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘quants_mat_rows_txt</em></p>
@@ -461,12 +472,12 @@ document.write(`
 </li>
 <li><p><em>Configure Output: ‘raw_cb_frequency_txt</em></p>
 <ul>
-<li><p>_Label: _raw_cb_frequency_txt</p></li>
+<li><p><em>Label:</em> raw_cb_frequency_txt</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘salmon_quant_log’</em></p>
 <ul>
-<li><p>_Label: _salmon_quant_log</p></li>
+<li><p><em>Label:</em> salmon_quant_log</p></li>
 </ul>
 </li>
 </ul>
@@ -479,23 +490,23 @@ document.write(`
 <p>Utilizar herramienta <strong>“Droplet barcode rank plot”</strong> (1.6.1+galaxy2) con los siguientes ajustes:</p>
 <ol class="arabic simple">
 <li><p><em>Input MTX-format matrix?:</em> No</p></li>
-<li><p><em>A two-column tab-delimited file, with barcodes in the first column and frequencies in the second</em>: Archivo de salida de Alevin “raw_cb_frequency_txt”</p></li>
-<li><p><em>Number of bins used in barcode count frequency distribution</em>: 50</p></li>
+<li><p><em>A two-column tab-delimited file, with barcodes in the first column and frequencies in the second:</em> Archivo de salida de Alevin “raw_cb_frequency_txt”</p></li>
+<li><p><em>Number of bins used in barcode count frequency distribution:</em> 50</p></li>
 <li><p><em>Above-baseline multiplier to calculate roryk threshold:</em> 1.5</p></li>
-<li><p><em>Label to place in plot title</em>: Barcode rank plot (raw barcode frequencies)</p></li>
+<li><p><em>Label to place in plot title:</em> Barcode rank plot (raw barcode frequencies)</p></li>
 <li><p><em>Configure output: ‘plot_file’</em></p>
 <ul class="simple">
-<li><p><em>Label</em>: QC – droplets – frecuencias de códigos de barra en bruto</p></li>
-<li><p><em>Rename dataset</em>: QC – droplets – frecuencias de códigos de barra en bruto</p></li>
+<li><p><em>Label:</em> QC – droplets – frecuencias de códigos de barra en bruto</p></li>
+<li><p><em>Rename dataset:</em> QC – droplets – frecuencias de códigos de barra en bruto</p></li>
 </ul>
 </li>
 </ol>
-<p>Antes de analizar el gráfico que obtuvimos, primero mostraremos cómo interpretarlo. El análisis de control de calidad se divide en dos gráficos, el de la izquierda representa el conteo de UMIs para códigos de barra individuales (eje y) versus el ranking (eje x), el cual va de más alto a más bajo desde izquierda a derecha. Se espera observar una disminución abrupta de UMIs para códigos de barra individuales, esto indica la división entre gotas que contengan células y las que no contienen células como se puede observar en el gráfico de abajo, para el cual se utilizaron datos obtenidos desde el Atlas de expresión de célula única (<a class="reference external" href="https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne">https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne</a>). Por otro lado, a la derecha encontramos un gráfico de densidad, en este gráfico se comparte el eje Y del gráfico de la derecha, siendo el conteo de UMIs para códigos de barra individuales, mientras que el eje x muestra la cantidad de células para cada conteo de UMIs, podemos pensar en este gráfico como un histograma en vertical, que representa la cantidad de células en función de los UMIs. En ambos gráficos tenemos los diferentes puntos de corte representados con diferentes colores, el punto de inflección calculado por dropletsutils en rojo, una bajada abrupta del conteo en base al ranking, llamado “knee” por “rodilla” en inglés, y el punto de corte del ranking de roryk en azul.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-lung-atlas-barcodes-raw.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-lung-atlas-barcodes-raw.png</a></p>
+<p>Antes de analizar el gráfico que obtuvimos, primero mostraremos cómo interpretarlo. El análisis de control de calidad se divide en dos gráficos, el de la izquierda representa el conteo de UMIs para códigos de barra individuales (eje y) versus el ranking (eje x), el cual va de más alto a más bajo desde izquierda a derecha. Se espera observar una disminución abrupta de UMIs para códigos de barra individuales, esto indica la división entre gotas que contengan células y las que no contienen células como se puede observar en el gráfico de abajo, para el cual se utilizaron datos obtenidos desde el <a class="reference external" href="https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne">Atlas de expresión de célula única</a>). Por otro lado, a la derecha encontramos un gráfico de densidad, en este gráfico se comparte el eje Y del gráfico de la derecha, siendo el conteo de UMIs para códigos de barra individuales, mientras que el eje x muestra la cantidad de células para cada conteo de UMIs, podemos pensar en este gráfico como un histograma en vertical, que representa la cantidad de células en función de los UMIs. En ambos gráficos tenemos los diferentes puntos de corte representados con diferentes colores, el punto de inflección calculado por dropletsutils en rojo, una bajada abrupta del conteo en base al ranking, llamado “knee” por “rodilla” en inglés, y el punto de corte del ranking de roryk en azul.</p>
+<p><img alt="aspectos_generales" src="_images/10_galaxy.png" /></p>
 <p>El resultado que se obtiene a partir del set de datos de entrenamiento usado en este tutorial no es muy informativo, como podemos observar en la siguiente imagen, debido a que sólo se tiene una fracción de las lecturas de secuenciación que se encontrarían normalmente en un caso real de análisis. Al revisar el gráfico obtenido podemos ver que no se presentan los hitos característicos, como la caída abrupta del ranking de UMIs, o el aumento marcado de densidad de células en el ranking superior de UMIs, producto del uso del set de datos de entrenamiento con una fracción de las lecturas.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-raw_barcodes-400k.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-raw_barcodes-400k.png</a></p>
+<p><img alt="aspectos_generales" src="_images/11_galaxy.png" /></p>
 <p>Por esto, incluimos el gráfico obtenido con el set de datos completo, el cual además de tener una mayor cantidad de lecturas, demora significativamente más en ser analizado utilizando este Flujo de Trabajo. En el set de datos completo podemos ver los hitos característicos de este análisis, y aunque no son tan marcados como en el set de datos que usamos de ejemplo anteriormente, se logran observar con bastante claridad.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-raw_barcodes-total.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-raw_barcodes-total.png</a></p>
+<p><img alt="aspectos_generales" src="_images/12_galaxy.png" /></p>
 <p>La finalidad de este control de calidad es poder obtener la información para seleccionar las células en base al ranking de UMIs y la densidad. Para esto, podemos utilizar cualquiera de los tres puntos de corte que nos muestra el gráfico, ya que estos indican el mínimo necesario para considerarse una gota con una célula única, dependiendo de la estadística por la que se obtuvo cada punto de corte. Estas estadísticas pueden obtenerse como lo hicimos en este paso, utilizando el análisis de dropletUtils, utilizando el análisis de Alevin, que mostraremos en el siguiente paso, o incluso otras formas de analizar estos datos con otros programas.</p>
 </section>
 <section id="qc-droplets-alevin">
@@ -503,26 +514,26 @@ document.write(`
 <p>En el primer gráfico utilizamos el análisis automático que hace la herramienta dropletUtils, y en este paso utilizaremos el procesamiento de datos que entrega Alevin en el paso <strong>7: Generación de índice y cuantificación</strong>, para ilustrar las diferencias entre las formas de analizar la información entre estos dos softwares.</p>
 <p>Utilizar herramienta <strong>“Droplet barcode rank plot”</strong> (1.6.1+galaxy2) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p><em>Input MTX-format matrix?</em>: Yes</p></li>
+<li><p><em>Input MTX-format matrix?:</em> Yes</p></li>
 <li><p><em>Matrix-market format matrix file, with cells by column (overrides –barcode-frequencies if supplied):</em> Archivo de salida de Alevin “matriz_conteo_genes”</p></li>
 <li><p><em>For use with –mtx-matrix: force interpretation of matrix to assume cells are by row, rather than by column (default):</em> Yes</p></li>
-<li><p><em>Label to place in plot title</em>: Barcode rank plot (Alevin-processed)</p></li>
-<li><p><em>Number of bins used in barcode count frequency distribution</em>: 50</p></li>
+<li><p><em>Label to place in plot title:</em> Barcode rank plot (Alevin-processed)</p></li>
+<li><p><em>Number of bins used in barcode count frequency distribution:</em> 50</p></li>
 <li><p><em>Above-baseline multiplier to calculate roryk threshold:</em> 1.5</p></li>
-<li><p><em>Label to place in plot title</em>: Barcode rank plot (raw barcode frequencies)</p></li>
+<li><p><em>Label to place in plot title:</em> Barcode rank plot (raw barcode frequencies)</p></li>
 <li><p><em>Configure output: ‘plot_file’</em></p>
 <ul class="simple">
-<li><p><em>Label</em>: QC – droplets – frecuencias de códigos de barra - Alevin</p></li>
-<li><p><em>Rename dataset</em>: QC – droplets – frecuencias de códigos de barra - Alevin</p></li>
+<li><p><em>Label:</em> QC – droplets – frecuencias de códigos de barra - Alevin</p></li>
+<li><p><em>Rename dataset:</em> QC – droplets – frecuencias de códigos de barra - Alevin</p></li>
 </ul>
 </li>
 </ol>
 <p>En la siguiente imagen podemos ver el gráfico correspondiente al set de entrenamiento, en donde, a diferencia del análisis automático de dropletUtils, podemos distinguir los diferentes hitos característicos de este gráfico de ranking de UMIs y densidad.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-400k.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-400k.png</a></p>
+<p><img alt="aspectos_generales" src="_images/13_galaxy.png" /></p>
 <p>Podemos observar incluso el set de datos completo, en donde vemos aún más marcados todos los hitos en comparación al gráfico obtenido en el análisis anterior.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-total.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-total.png</a></p>
+<p><img alt="aspectos_generales" src="_images/14_galaxy.png" /></p>
 <p>Finalmente, a modo de comparación final, dejamos el análisis del set de datos de ejemplo que usamos en un principio para explicar los componentes de estos gráficos, en donde, de la misma forma que en los gráficos anteriores, los hitos se observan de forma mucho más clara utilizando los datos procesados por Alevin.</p>
-<p><a class="reference external" href="https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-lung.png">https://training.galaxyproject.org/training-material/topics/single-cell/images/scrna-casestudy/wab-alevin-barcodes-lung.png</a></p>
+<p><img alt="aspectos_generales" src="_images/15_galaxy.png" /></p>
 <p>Si bien ahora podemos identificar mucho mejor las diferentes características en las distribuciones de estos gráficos, también debemos tener cuidado, ya que Alevin excluye cualquier código de barras individual asignado a una célula que tenga menos de 10 UMIs. Al hacer esto, la distribución de datos se interrumpe drásticamente, y en algunos sets de datos más complejos, podría significar un problema a la hora de filtrar los datos en los pasos posteriores.</p>
 <p>Generalmente en experimentos con características relativamente simples podemos ver la caída en el ranking de UMIs bastante marcada, pero para algunas poblaciones, como lo vimos en el set de datos de entrenamiento, pueden presentar dificultades. Por ejemplo, algunas subpoblaciones de células pequeñas podrían no ser distinguidas aparte de gotas vacías, basándose únicamente en el conteo por código de barras. Incluso algunas librerías generan varias “knees” para múltiples subpoblaciones de células.</p>
 <p>Con este tipo de datos no comunes, el método de emptyDrops ha ganado popularidad, ya que puede lidiar muy bien con este tipo de datos, conservando los códigos de barra con conteos altos de UMIs, pero también agrega los códigos de barra cuyos conteos de UMIs pueden ser estadísticamente distinguidos de los códigos de barra que presenten conteos de UMIs de RNA ambiental producto de la preparación de las muestras (incluso si el conteo es similar). Para poder correr el análisis con emptyDrops (o cualquier herramienta de preferencia), primero tenemos que correr Alevin nuevamente, pero sin que este aplique sus propios umbrales de corte.</p>
@@ -530,58 +541,59 @@ document.write(`
 <section id="alevin-sin-procesar">
 <h2>8: Alevin - sin procesar<a class="headerlink" href="#alevin-sin-procesar" title="Link to this heading">#</a></h2>
 <p>En este paso ocuparemos Alevin, esta vez ajustando manualmente los parámetros para que no procese los datos como en el caso anterior.</p>
-<p>Utilizar herramienta <strong>“Alevin”</strong> (1.10.1+galaxy0)* con los siguientes ajustes:</p>
-<p>*** **Al buscar Alevin podríamos no encontrarlo directamente, si tiene este problema, debe buscarlo dentro de la pestaña “Single Cell”</p>
+<p>Utilizar herramienta <strong>“Alevin”</strong> (1.10.1+galaxy0)* con los siguientes ajustes:<br />
+<sup> * Al buscar Alevin podríamos no encontrarlo directamente, si tiene este problema, debe buscarlo dentro de la pestaña “Single Cell” </sup></p>
 <ol class="arabic simple">
 <li><p><em>Select a reference transcriptome from your history or use a built-in index?:</em>  Use one from the history</p>
 <ul class="simple">
 <li><p><em>Salmon index:</em></p></li>
-<li><p><em>Kmer length</em>: 31</p></li>
+<li><p><em>Kmer length:</em> 31</p></li>
 </ul>
 </li>
-<li><p><em>Single or paired-end read_s?:</em> _Paired-end</p></li>
-<li><p><em>Single or paired-end reads?:</em> Paired-end</p>
+<li><p><em>Single or paired-end read_s?:</em> Paired-end</p></li>
+<li><p><em>Single or paired-end reads?:</em> Paired-end
+<sup>Hacer coincidir archivo de salida de Read 1 con Mate 1 y Read 2 con Mate 2. De no trabajar en un flujo de trabajo, seleccionar manualmente estos archivos en la configuración de la herramienta</sup></p>
 <ul class="simple">
-<li><p>*****Hacer coincidir archivo de salida de Read 1 con Mate 1 y Read 2 con Mate 2. De no trabajar en un flujo de trabajo, seleccionar manualmente estos archivos en la configuración de la herramienta</p></li>
 <li><p><em>Specify the strandedness of the reads:</em> Infer automatically (A)</p></li>
 </ul>
 </li>
-<li><p><em>Type of single-cell protocol</em>: DropSeq Single Cell protocol</p></li>
-<li><p>_Extra output files _(marcar casilla de las siguientes opciones):</p>
+<li><p><em>Type of single-cell protocol:</em> DropSeq Single Cell protocol</p></li>
+<li><p><em>Extra output files</em> (marcar casilla de las siguientes opciones):</p>
 <ul class="simple">
-<li><p>Salmon Quant log file</p></li>
-<li><p>Features used by the CB classification and their counts at each cell level (–dumpFeatures)</p></li>
-<li><p>*** Cuidado:** “<em>Per cell level parsimonioes Umi graph (-dumpUmiGraph)</em>” genera un archivo para cada célula. Esto no es necesario para este tutorial</p></li>
+<li><p><em>Salmon Quant log file</em></p></li>
+<li><p><em>Features used by the CB classification and their counts at each cell level (–dumpFeatures)</em></p></li>
+<li><p><strong>Cuidado:</strong> <em>“Per cell level parsimonioes Umi graph (-dumpUmiGraph)”</em> genera un archivo para cada célula. Esto no es necesario para este tutorial</p></li>
 </ul>
 </li>
 <li><p><em>Advanced options:</em></p>
 <ul class="simple">
-<li><p><em>Dump cell v transcripts count matrix in MTX format</em>: Yes</p></li>
-<li><p><em>“Fraction of cellular barcodes to keep</em>”: ‘1’ (nos quedamos con todos los códigos de barras)</p></li>
-<li><p><em>“Minimum frequency for a barcode to be considered</em>”: 3 (Con este filtro nos deshacemos de todos los códigos de barra con una frecuencia menor a 3, lo que es un filtro muy bajo y que al mismo tiempo nos evitará procesar lo que es casi certeramente códigos de barra vacíos)</p></li>
+<li><p><em>Dump cell v transcripts count matrix in MTX format:</em> Yes</p></li>
+<li><p><em>“Fraction of cellular barcodes to keep”:</em> ‘1’<br />
+<sup>nos quedamos con todos los códigos de barras</sup></p></li>
+<li><p><em>“Minimum frequency for a barcode to be considered”:</em> 3<br />
+<sup>Con este filtro nos deshacemos de todos los códigos de barra con una frecuencia menor a 3, lo que es un filtro muy bajo y que al mismo tiempo nos evitará procesar lo que es casi certeramente códigos de barra vacíos</sup></p></li>
 </ul>
 </li>
 <li><p><em>Aditional options:</em></p>
 <ul class="simple">
-<li><p><em><em>_</em> En esta sección puede configurar qué archivos de salida desea generar, así como los nombres de estos archivos para una identificación más eficaz luego de que concluya el Flujo de Trabajo_</em>*</p></li>
 <li><p><em>Configure Output: ‘quants_mat_mtx’</em></p>
 <ul>
-<li><p>_Label: _matriz_conteo_genes_sp</p></li>
+<li><p><em>Label:</em> matriz_conteo_genes_sp</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘quants_mat_cols_txt</em></p>
 <ul>
-<li><p>_Label: _IDs_genes_sp</p></li>
+<li><p><em>Label:</em> IDs_genes_sp</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘quants_mat_rows_txt</em></p>
 <ul>
-<li><p>_Label: _Codigos_de_barra_sp</p></li>
+<li><p><em>Label:</em> Codigos_de_barra_sp</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘salmon_quant_log’</em></p>
 <ul>
-<li><p>_Label: _salmon_quant_log_sp</p></li>
+<li><p><em>Label:</em> salmon_quant_log_sp</p></li>
 </ul>
 </li>
 </ul>
@@ -593,29 +605,32 @@ document.write(`
 <p>Debido a que la matriz de salida del análisis realizado con Alevin no es el indicado para seguir con el análisis de emptyDrops, debemos hacer un reformateo de los datos a unos más similares a los obtenidos con tecnología 10X.</p>
 <p>Utilizar herramienta <strong>“salmonKallistoMtxTo10x”</strong> (0.0.1+galaxy6) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p><em>mtx-format matrix:</em> matriz_conteo_genes_sp (archivo de salida de Alevin, paso 8)</p></li>
-<li><p><em>Tab-delimited genes file:</em> IDs_genes_sp (archivo de salida de Alevin, paso 8)</p></li>
-<li><p>_ Tab-delimited barcodes file_: Codigos_de_barra_sp (archivo de salida de Alevin, paso 8)</p></li>
+<li><p><em>mtx-format matrix:</em> matriz_conteo_genes_sp<br />
+<sup>Archivo de salida de Alevin, paso 8</sup></p></li>
+<li><p><em>Tab-delimited genes file:</em> IDs_genes_sp<br />
+<sup>Archivo de salida de Alevin, paso 8</sup></p></li>
+<li><p>_ Tab-delimited barcodes file_: Codigos_de_barra_sp<br />
+<sup>Archivo de salida de Alevin, paso 8</sup></p></li>
 <li><p><em>Configure Output: ‘genes_out’</em></p>
 <ul class="simple">
-<li><p>_Label: _Tabla_genes</p></li>
+<li><p><em>Label:</em> Tabla_genes</p></li>
 <li><p><em>Rename dataset:</em> Tabla_genes</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘barcodes_out’</em></p>
 <ul class="simple">
-<li><p>_Label: _Tabla_codigos_de_barra</p></li>
+<li><p><em>Label:</em> Tabla_codigos_de_barra</p></li>
 <li><p><em>Rename dataset:</em> Tabla_codigos_de_barra</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘matrix_out’</em></p>
 <ul class="simple">
-<li><p>_Label: _Matriz</p></li>
+<li><p><em>Label:</em> Matriz</p></li>
 <li><p><em>Rename dataset:</em> Matriz</p></li>
 </ul>
 </li>
 </ol>
-<p>El archivo de salida de este paso es una matriz con la orientación correcta para que las herramientas que usaremos puedan leerla sin problemas. La limitación actual de estos datos es que por ahora sólo podemos identificar los genes por medio del el ID asignado por ENSEMBL, por lo que en los siguientes pasos vamos a completar la información con los nombres de los genes en formato abreviado, o como se conoce en algunas bases de datos, el “<em>gene_symbol”.</em></p>
+<p>El archivo de salida de este paso es una matriz con la orientación correcta para que las herramientas que usaremos puedan leerla sin problemas. La limitación actual de estos datos es que por ahora sólo podemos identificar los genes por medio del el ID asignado por ENSEMBL, por lo que en los siguientes pasos vamos a completar la información con los nombres de los genes en formato abreviado, o como se conoce en algunas bases de datos, el “_gene_symbol”.</p>
 </section>
 <section id="obtencion-de-anotacion">
 <h2>5: Obtención de anotación<a class="headerlink" href="#obtencion-de-anotacion" title="Link to this heading">#</a></h2>
@@ -627,43 +642,98 @@ document.write(`
 <li><p><em>Suppress header line in output?:</em> Yes</p></li>
 <li><p><em>Comma-separated list of field names to extract from the GTF (default: use all fields):</em> gene_id,gene_name,mito</p></li>
 <li><p><em>Append version to transcript identifiers?:</em> Yes</p></li>
-<li><p><em>Flag mitochondrial features?:</em> Yes (Esto rellenará automáticamente los parametros de esta sección. Estos parámetros son integrados por acrónimos que servirán como palabras clave para la clasificación de cromosomas y biotipos mitocondriales)</p></li>
-<li><p>_Provide a cDNA file for extracting annotations and/ or possible filtering?: _No (No es necesario para esta ocasión, ya que tenemos el archivo FASTA obtenido previamente al inicio del Flujo de Trabajo)</p></li>
-<li><p><strong>Se debe checkear que el formato de salida del archivo sea “tabular”, de no ser así, esto puede ser cambiado en “Configure Output: ‘feature_annotation’ - Change datatype” y especificar dicho formato.</strong></p></li>
+<li><p><em>Flag mitochondrial features?:</em> Yes<br />
+<sup>Esto rellenará automáticamente los parametros de esta sección. Estos parámetros son integrados por acrónimos que servirán como palabras clave para la clasificación de cromosomas y biotipos mitocondriales</sup></p></li>
+<li><p><em>Provide a cDNA file for extracting annotations and/ or possible filtering?:</em> No<br />
+<sup>No es necesario para esta ocasión, ya que tenemos el archivo FASTA obtenido previamente al inicio del Flujo de Trabajo</sup><br />
+<sup> <strong>Se debe checkear que el formato de salida del archivo sea “tabular”, de no ser así, esto puede ser cambiado en “Configure Output: ‘feature_annotation’ - Change datatype” y especificar dicho formato.</strong> </sup></p></li>
 <li><p><em>Configure Output: ‘feature_annotation’</em></p>
 <ul class="simple">
-<li><p>_Label: _Anotación de genes</p></li>
+<li><p><em>Label:</em> Anotación de genes</p></li>
 <li><p><em>Rename dataset:</em> Anotación de genes</p></li>
 </ul>
 </li>
 </ol>
 <p>Al inspeccionar esta tabla, podemos ver la información que obtuvimos con esta extracción de datos:</p>
-<p>Column 1	Column 2	Column 3</p>
-<p>ENSMUSG00000102693	4933401J01Rik	False</p>
-<p>ENSMUSG00000064842	Gm26206	False</p>
-<p>ENSMUSG00000051951	Xkr4	False</p>
-<p>ENSMUSG00000102851	Gm18956	False</p>
-<p>ENSMUSG00000103377	Gm37180	False</p>
-<p>ENSMUSG00000104017	Gm37363	False</p>
+<table>
+  <tr>
+   <td>Column 1
+   </td>
+   <td>Column 2
+   </td>
+   <td>Column 3
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000102693
+   </td>
+   <td>4933401J01Rik
+   </td>
+   <td>False
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000064842
+   </td>
+   <td>Gm26206
+   </td>
+   <td>False
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000051951
+   </td>
+   <td>Xkr4
+   </td>
+   <td>False
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000102851
+   </td>
+   <td>Gm18956
+   </td>
+   <td>False
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000103377
+   </td>
+   <td>Gm37180
+   </td>
+   <td>False
+   </td>
+  </tr>
+  <tr>
+   <td>ENSMUSG00000104017
+   </td>
+   <td>Gm37363
+   </td>
+   <td>False
+   </td>
+  </tr>
+</table>
 </section>
 <section id="juntar-tablas-de-genes-y-anotacion">
 <h2>12: Juntar tablas de genes y anotación<a class="headerlink" href="#juntar-tablas-de-genes-y-anotacion" title="Link to this heading">#</a></h2>
 <p>La información que obtuvimos en el paso anterior no nos sirve si no está integrada en nuestro set de datos que analizaremos posteriormente, es por esto que vamos a juntar la tabla de genes que obtuvimos en el paso 11 y la tabla que obtuvimos en el paso anterior.</p>
 <p>Utilizar herramienta <strong>“Join two Datasets”</strong> con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p><em>Join:</em> Tabla_genes</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Join</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p><em>Join:</em> Tabla_genes</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Join</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
 <li><p><em>Using column:</em> 1</p></li>
-<li><p><em>with:</em> Anotación de genes</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>with</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p><em>with:</em> Anotación de genes</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>with</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
 <li><p><em>and column:</em> Column: 1</p></li>
 <li><p><em>Keep lines of first input that do not join with second input:</em> Yes</p></li>
 <li><p><em>Keep lines of first input that are incomplete:</em> Yes</p></li>
@@ -671,7 +741,7 @@ document.write(`
 <li><p><em>Keep the header lines:</em> No</p></li>
 <li><p><em>Configure Output: ‘feature_annotation’</em></p>
 <ul class="simple">
-<li><p>_Label: _Tabla_genes_anotada_raw</p></li>
+<li><p><em>Label:</em> Tabla_genes_anotada_raw</p></li>
 <li><p><em>Rename dataset:</em> Tabla_genes_anotada_raw</p></li>
 </ul>
 </li>
@@ -684,15 +754,16 @@ document.write(`
 <ol class="arabic simple">
 <li><p><em>Cut columns:</em> c1,c4,c5</p></li>
 <li><p><em>Delimited by:</em> Tab</p></li>
-<li><p><em>From:</em> Tabla_genes_anotada_raw</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en el la sección “<em>From</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p><em>From:</em> Tabla_genes_anotada_raw</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en el la sección “<em>From</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
 <li><p><em>Configure Output: ‘out_file1’</em></p>
 <ul class="simple">
-<li><p>_Label: _Tabla_genes_anotada</p></li>
+<li><p><em>Label:</em> Tabla_genes_anotada</p></li>
 <li><p><em>Rename dataset:</em> Tabla_genes_anotada</p></li>
 </ul>
 </li>
@@ -703,13 +774,13 @@ document.write(`
 <p>Finalmente hemos llegado al paso de hacer el análisis de emptyDrops. Aquí procesaremos las tablas que generamos anteriormente para obtener el análisis de control de calidad utilizando el método de emptyDrops. Para comenzar con esto, primero debemos generar un objeto con los 3 set de datos, Tabla_genes_anotadas, Tabla_codigos_de_barra, y Matriz.</p>
 <p>Utilizar herramienta <strong>“DropletUtils Read10x”</strong> (1.0.4+galaxy0) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p><em>“Expression matrix in sparse matrix format (.mtx)”</em>: Matrix table</p></li>
-<li><p>param-file <em>“Gene Table”</em>: Annotated Gene Table</p></li>
-<li><p>param-file <em>“Barcode/cell table”</em>: Barcode table</p></li>
-<li><p><em>“Should metadata file be added?”</em>: No</p></li>
+<li><p><em>“Expression matrix in sparse matrix format (.mtx)”:</em> Matrix table</p></li>
+<li><p>param-file <em>“Gene Table”:</em> Annotated Gene Table</p></li>
+<li><p>param-file <em>“Barcode/cell table”:</em> Barcode table</p></li>
+<li><p><em>“Should metadata file be added?”:</em> No</p></li>
 <li><p><em>Configure Output: ‘output_rds’</em></p>
 <ul class="simple">
-<li><p>_Label: _Objeto SCE</p></li>
+<li><p><em>Label:</em> Objeto SCE</p></li>
 <li><p><em>Rename dataset:</em> Objeto SCE</p></li>
 </ul>
 </li>
@@ -720,31 +791,32 @@ document.write(`
 <p>En este paso filtraremos las gotas que sean de baja calidad, quedándonos con la información útil para los análisis posteriores.</p>
 <p>Utilizar herramienta <strong>“DropletUtils emptyDrops”</strong> (1.0.4+galaxy0) con los siguientes ajustes:</p>
 <ol class="arabic simple">
-<li><p><em>SingleCellExperiment rdata object:</em> Objeto SCE</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>SingleCellExperiment rdata object</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p><em>SingleCellExperiment rdata object:</em> Objeto SCE</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>SingleCellExperiment rdata object</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
 <li><p><em>Should barcodes estimated to have no cells be removed from the output object?:</em> Yes</p></li>
 <li><p><em>Configure Output: ‘output_rdata’</em></p>
 <ul class="simple">
-<li><p>_Label: _Objeto_vaciado</p></li>
-<li><p>_Rename dataset: _Objeto_vaciado</p></li>
+<li><p><em>Label:</em> Objeto_vaciado</p></li>
+<li><p><em>Rename dataset:</em> Objeto_vaciado</p></li>
 </ul>
 </li>
 <li><p><em>Configure Output: ‘output_txt’</em></p>
 <ul class="simple">
-<li><p>_Label: _Archivo_tabular_vaciado</p></li>
-<li><p>_Rename dataset: _Archivo_tabular_vaciado</p></li>
+<li><p><em>Label:</em> Archivo_tabular_vaciado</p></li>
+<li><p><em>Rename dataset:</em> Archivo_tabular_vaciado</p></li>
 </ul>
 </li>
-<li><p>Los siguientes ajustes deberían aparecer por defecto, están incluidos en este tutorial únicamente con la finalidad de mantenerlos de forma explícita y obtener resultados similares, ya que siempre hay un factor que podría cambiar los resultados, producto de las iteraciones de algoritmos que se hacen en los diferentes módulos.</p>
+<li><p>Los siguientes ajustes deberían ser los valores por defecto, están incluidos en este tutorial únicamente con la finalidad de mantenerlos de forma explícita y obtener resultados similares, ya que siempre hay un factor que podría cambiar los resultados, producto de las iteraciones de algoritmos que se hacen en los diferentes módulos.</p>
 <ul class="simple">
-<li><p>_UMI count lower bound: _100</p></li>
+<li><p><em>UMI count lower bound:</em> 100</p></li>
 <li><p><em>Number of iterations:</em> 1000</p></li>
 <li><p><em>FDR filter for removal of barcodes with no cells:</em> 0.01</p></li>
-<li><p>_Should results be returned for barcodes with totals less than or equal to the value of ‘lower’?: _No</p></li>
+<li><p><em>Should results be returned for barcodes with totals less than or equal to the value of ‘lower’?:</em> No</p></li>
 </ul>
 </li>
 </ol>
@@ -756,16 +828,17 @@ document.write(`
 <p>Utilizar herramienta <strong>“SCEasy Converter”</strong> (0.0.7+galaxy2/0.0.5+galaxy1) con los siguientes ajustes:</p>
 <ol class="arabic simple">
 <li><p><em>Convert From / To:</em> SingleCellExperiment to AnnData</p></li>
-<li><p>_ Input object in sce,rds,rdata.sce format:_ Objeto_vaciado</p>
-<ul class="simple">
-<li><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.</p></li>
-<li><p>En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Input objetc</em>” en el módulo.</p></li>
-</ul>
-</li>
+<li><p>_ Input object in sce,rds,rdata.sce format:_ Objeto_vaciado</p></li>
+</ol>
+<blockquote>
+<div><p>Especificar solo en caso de no estar en la interfaz de Flujo de Trabajo.<br />
+En el flujo de trabajo se debe conectar este archivo de salida en la sección “<em>Input objetc</em>” en el módulo.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
 <li><p><em>Configure Output: ‘output_anndata’</em></p>
 <ul class="simple">
-<li><p>_Label: _Objeto_anndata</p></li>
-<li><p>_Rename dataset: _Objeto_anndata</p></li>
+<li><p><em>Label:</em> Objeto_anndata</p></li>
+<li><p><em>Rename dataset:</em> Objeto_anndata</p></li>
 </ul>
 </li>
 </ol>
@@ -803,7 +876,7 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="7-8-Datos.html"
+       href="8-Datos.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -812,11 +885,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="10-Datos.html"
+       href="10-Parte_2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Datos</p>
+        <p class="prev-next-title">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

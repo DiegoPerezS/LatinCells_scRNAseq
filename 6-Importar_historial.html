@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '6-Importar_historial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Datos" href="7-8-Datos.html" />
+    <link rel="next" title="Generación de matrices de células únicas usando Alevin" href="7-Parte_1.html" />
     <link rel="prev" title="Copiar set de datos entre historiales" href="5-Copiar_entre_historiales.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -185,14 +185,16 @@
 <li class="toctree-l1"><a class="reference internal" href="5-Copiar_entre_historiales.html">Copiar set de datos entre historiales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Importar historial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="7-8-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-Parte_1.html">Generación de matrices de células únicas usando Alevin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8-Datos.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9-Transcrito_a_gen.html">Generación de mapas de transcrito a gen</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Parte_2.html">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="11-Concatenar_datos.html">Concatenar set de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-Preparacion_para_analisis.html">Preparación de datos para el análisis</a></li>
@@ -367,18 +369,14 @@ document.write(`
 <li><p>En el servidor de Galaxy donde se encuentra originalmente el archivo, debe <strong>configurar el historial a un estado compartido</strong>.</p>
 <ul>
 <li><p>Para cambiar esta configuración, debe presionar el ícono de opciones del historial y seleccionar “Share or Publish”, marcar “Also make all objects within the History accessible” y seleccionar “Make History Accessible via Link” (estos pasos pueden variar dependiendo del servidor de Galaxy en el que se encuentre)</p></li>
+<li><p><img alt="historial_1" src="_images/7_historial_publico.png" /></p></li>
 </ul>
 </li>
+<li><p>En el caso del servidor de Galaxy de LatinCells, obtendrá un link para compartir el historial en la misma ventana indicada en el paso anterior.</p></li>
+<li><p>En otros servidores de Galaxy, en los archivos del historial aparecerá un ícono de enlace en la barra de íconos inferior de los archivos, como se indica en la siguiente imagen. Al presionar este ícono, se copiará automáticamente el enlace de descarga para el archivo seleccionado.</p></li>
+<li><p><img alt="historial_2" src="_images/8_historial_link.png" /></p></li>
 </ul>
 </li>
-</ul>
-<p><img alt="historial_1" src="../Imagenes/7_historial_publico.png" /></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    * En el caso del servidor de Galaxy de LatinCells, obtendrá un link para compartir el historial en la misma ventana indicada en el paso anterior.
-    * En otros servidores de Galaxy, en los archivos del historial aparecerá un ícono de enlace en la barra de íconos inferior de los archivos, como se indica en la siguiente imagen. Al presionar este ícono, se copiará automáticamente el enlace de descarga para el archivo seleccionado.
-</pre></div>
-</div>
-<p><img alt="historial_2" src="../Imagenes/8_historial_link.png" /></p>
-<ul class="simple">
 <li><p>Transferir el historial completo:</p>
 <ul>
 <li><p>Para hacer esto, debe tener una cuenta de Galaxy en cada uno de los servidores que esté utilizando (no aplica al servidor de Galaxy LatinCells ya que en el paso anterior ya se generó el enlace para descargarlo).</p></li>
@@ -386,25 +384,26 @@ document.write(`
 <ul>
 <li><p>Configurar el historial a un estado compartido.</p></li>
 <li><p>En las opciones del historial, seleccionar “Export History to File”</p></li>
+<li><p><img alt="historial_3" src="_images/9_historial_archivo.png" /></p></li>
+<li><p>En la nueva ventana se consulta cómo desea exportar el historial, debe seleccionar “to direct download”.</p></li>
+<li><p>Seleccionar “Generate direct download”.</p></li>
+<li><p>Se iniciará una animación de carga, cuando esta termine, copie el enlace del archivo.</p></li>
+</ul>
+</li>
+<li><p>En el servidor de Galaxy de destino de los archivos:</p>
+<ul>
+<li><p>En servidor de Galaxy LatinCells: Seleccionar “User/Histories” en el menú superior, y presionar “Import from file”.</p></li>
+<li><p>En otros servidores de Galaxy: Seleccionar “Users/Datasets” o “Data/Datasets”, dependiendo del servidor de Galaxy en el que se encuentre, y seleccionar “Saved Histories”.</p></li>
+<li><p>Seleccionar “Import history” en el botón gris en la esquina superior derecha.</p></li>
+<li><p>Pegar el enlace previamente obtenido.</p></li>
+<li><p>Seleccionar “Import History”</p></li>
+<li><p>Luego de que la pantalla de carga muestre que el proceso ha finalizado, el historial se encontrará en “Saved Histories”.</p></li>
+</ul>
+</li>
+<li><p>En estos pasos puede dejar que el servidor trabaje sólo, y si tiene las notificaciones por correo electrónico activadas, le llegará una notificación cuando el proceso haya terminado.</p></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p><img alt="historial_3" src="../Imagenes/9_historial_archivo.png" /></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    * En la nueva ventana se consulta cómo desea exportar el historial, debe seleccionar “to direct download”.
-    * Seleccionar “Generate direct download”.
-    *  Se iniciará una animación de carga, cuando esta termine, copie el enlace del archivo. *
-* En el servidor de Galaxy de destino de los archivos:
-    * En servidor de Galaxy LatinCells: Seleccionar “User/Histories” en el menú superior, y presionar “Import from file”.
-    * En otros servidores de Galaxy: Seleccionar “Users/Datasets” o “Data/Datasets”, dependiendo del servidor de Galaxy en el que se encuentre, y seleccionar “Saved Histories”.
-    * Seleccionar “Import history” en el botón gris en la esquina superior derecha.
-    * Pegar el enlace previamente obtenido.
-    * Seleccionar “Import History”
-    * Luego de que la pantalla de carga muestre que el proceso ha finalizado, el historial se encontrará en “Saved Histories”. *
-* * En estos pasos puede dejar que el servidor trabaje sólo, y si tiene las notificaciones por correo electrónico activadas, le llegará una notificación cuando el proceso haya terminado.
-</pre></div>
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -447,11 +446,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="7-8-Datos.html"
+       href="7-Parte_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Datos</p>
+        <p class="prev-next-title">Generación de matrices de células únicas usando Alevin</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

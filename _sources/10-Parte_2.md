@@ -1,19 +1,19 @@
-# Parte 2: Combinar set de datos de secuenciación de célula única luego del preprocesamiento
+# Combinar set de datos de secuenciación de célula única luego del preprocesamiento
 
 En esta parte del tutorial combinaremos los diferentes archivos de secuenciación que preprocesamos en el paso anterior. Esto quiere decir que el paso anterior será ejecutado para cada una de las muestras, y cada objeto AnnData que obtenemos al final será el archivo de entrada para esta parte. Estos los podemos obtener desde el historial, y para poder identificar con mayor facilidad, el usuario puede cambiar el nombre del objeto AnnData de cada muestra para poder identificarlos fácilmente. Además, también es posible importar los objetos AnnData, y existen 3 formas de hacerlo:
 
+# Datos
+
 Debido a que este tutorial utiliza set de datos de entrenamiento, en la **Parte 1** no analizamos más de una muestra, por lo que, para continuar con este tutorial, debe **importar** los sets de datos con los siguientes enlaces:
 
-    ```
-https://zenodo.org/records/10852529/files/Experimental_Design.tabular.tabular 
-https://zenodo.org/records/10852529/files/N701-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N702-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N703-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N704-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N705-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N706-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N707-400k-AnnData.h5ad
-    ```
+<https://zenodo.org/records/10852529/files/Experimental_Design.tabular.tabular>
+<https://zenodo.org/records/10852529/files/N701-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N702-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N703-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N704-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N705-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N706-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N707-400k-AnnData.h5ad>
 
 Al importar los archivos, es importante que sean leídos como h5ad, de lo contrario, se debe cambiar el tipo de archivo a h5ad. 
 
