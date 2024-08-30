@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -185,14 +185,16 @@
 <li class="toctree-l1"><a class="reference internal" href="5-Copiar_entre_historiales.html">Copiar set de datos entre historiales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6-Importar_historial.html">Importar historial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1 - Generación de matrices de células únicas usando Alevin</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="7-8-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-Parte_1.html">Generación de matrices de células únicas usando Alevin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8-Datos.html">Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9-Transcrito_a_gen.html">Generación de mapas de transcrito a gen</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2 - Combinar set de datos de secuenciación de célula única luego del preprocesamiento</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10-Datos.html">Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Parte_2.html">Combinar set de datos de secuenciación de célula única luego del preprocesamiento</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="11-Concatenar_datos.html">Concatenar set de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-Visualizacion_anndata.html">Visualización de objeto AnnData</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-Preparacion_para_analisis.html">Preparación de datos para el análisis</a></li>
@@ -364,29 +366,29 @@ document.write(`
 <p>Para comenzar a utilizar el Flujo de Trabajo de este tutorial:</p>
 <section id="abrir-un-nuevo-historial">
 <h2>Abrir un nuevo Historial:<a class="headerlink" href="#abrir-un-nuevo-historial" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* En la barra de Historial, titulada **“History”**, debe presionar el ícono **“+”**, y darle un título al historial seleccionando el actual título, **“Unnamed history”.**
-</pre></div>
-</div>
-<p><img alt="detalles_1" src="../Imagenes/2_historial.png" /></p>
+<ul class="simple">
+<li><p>En la barra de Historial, titulada <strong>“History”</strong>, debe presionar el ícono <strong>“+”</strong>, y darle un título al historial seleccionando el actual título, <strong>“Unnamed history”.</strong></p></li>
+</ul>
+<p><img alt="detalles_1" src="_images/2_historial.png" /></p>
 </section>
 <section id="importar-archivos-al-historial-de-galaxy">
 <h2>Importar archivos al historial de Galaxy:<a class="headerlink" href="#importar-archivos-al-historial-de-galaxy" title="Link to this heading">#</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* En la barra de herramientas, titulada **“Tools”**, debe presionar el ícono de subir datos a Galaxy, indicado en la siguiente imagen.
-</pre></div>
-</div>
-<p><img alt="detalles_2" src="../Imagenes/3_importar_datos.png" /></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* A lo largo de este tutorial, usaremos la opción de **“Paste/Fetch data”**, en el cuadro de texto, debe pegar los enlaces adjuntos al inicio de cada parte de este tutorial, y presionar **“Start”**. Los archivos comenzarán a cargarse al historial y debe esperar a que este proceso termine, indicado visualmente cuando el archivo en el historial cambia de color amarillo a verde. 
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>En la barra de herramientas, titulada <strong>“Tools”</strong>, debe presionar el ícono de subir datos a Galaxy, indicado en la siguiente imagen.</p></li>
+</ul>
+<p><img alt="detalles_2" src="_images/3_importar_datos.png" /></p>
+<ul class="simple">
+<li><p>A lo largo de este tutorial, usaremos la opción de <strong>“Paste/Fetch data”</strong>, en el cuadro de texto, debe pegar los enlaces adjuntos al inicio de cada parte de este tutorial, y presionar <strong>“Start”</strong>. Los archivos comenzarán a cargarse al historial y debe esperar a que este proceso termine, indicado visualmente cuando el archivo en el historial cambia de color amarillo a verde.</p></li>
+</ul>
 </section>
 <section id="descargar-flujo-de-trabajo-que-desee-utilizar">
 <h2>Descargar Flujo de Trabajo que desee utilizar:<a class="headerlink" href="#descargar-flujo-de-trabajo-que-desee-utilizar" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Enlaces a Flujos de Trabajo:</p>
 <ul>
-<li><p>Parte 1 [enlace]</p></li>
-<li><p>Parte 2 [enlace]</p></li>
-<li><p>Parte 3 [enlace]</p></li>
+<li><p><a class="reference external" href="https://usegalaxy.eu/u/diego_perez/w/generating-a-single-cell-matrix-using-alevin-imported-from-uploaded-file-1">Parte 1</a></p></li>
+<li><p><a class="reference external" href="https://usegalaxy.eu/u/diego_perez/w/combining-datasets-after-pre-processing-imported-from-uploaded-file">Parte 2</a></p></li>
+<li><p>Parte 3</p></li>
 </ul>
 </li>
 <li><p>Abrir la pestaña <strong>Flujo de Trabajo</strong> en el menú superior</p></li>
@@ -394,7 +396,7 @@ document.write(`
 <li><p>Galaxy volverá a la pestaña <strong>Flujo de Trabajo</strong>.</p></li>
 <li><p>Seleccionar el ícono de la columna <strong>Run</strong> en el Flujo de Trabajo que desee utilizar. Al posar el cursor sobre el ícono aparecerá el mensaje “Ejecutar Flujo de Trabajo”.</p></li>
 </ul>
-<p><img alt="detalles_3" src="../Imagenes/4_run_workflow.png" /></p>
+<p><img alt="detalles_3" src="_images/4_run_workflow.png" /></p>
 <ul class="simple">
 <li><p>El Flujo de Trabajo solicitará algunos archivos, estos serán vistos en detalle al inicio de cada parte de este tutorial.</p></li>
 </ul>
@@ -405,7 +407,7 @@ document.write(`
 <li><p>La inspección de datos en el historial es una forma de visualización. Si bien hay formatos que no son soportados para visualizar directamente, la mayoría puede ser explorado directamente en Galaxy, además, algunos datos pueden procesarse dentro de esta misma plataforma para poder visualizarlos de diferentes formas.</p></li>
 <li><p>Para inspeccionar un elemento, se debe seleccionar el ícono con forma de ojo en el elemento dentro del historial, como se indica en la siguiente imagen.</p></li>
 </ul>
-<p><img alt="detalles_4" src="../Imagenes/5_view_data.png" /></p>
+<p><img alt="detalles_4" src="_images/5_view_data.png" /></p>
 </section>
 </section>
 

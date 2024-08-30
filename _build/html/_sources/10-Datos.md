@@ -4,16 +4,14 @@ En esta parte del tutorial combinaremos los diferentes archivos de secuenciació
 
 Debido a que este tutorial utiliza set de datos de entrenamiento, en la **Parte 1** no analizamos más de una muestra, por lo que, para continuar con este tutorial, debe **importar** los sets de datos con los siguientes enlaces:
 
-    ```
-https://zenodo.org/records/10852529/files/Experimental_Design.tabular.tabular 
-https://zenodo.org/records/10852529/files/N701-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N702-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N703-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N704-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N705-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N706-400k-AnnData.h5ad
-https://zenodo.org/records/10852529/files/N707-400k-AnnData.h5ad
-    ```
+<https://zenodo.org/records/10852529/files/Experimental_Design.tabular.tabular>
+<https://zenodo.org/records/10852529/files/N701-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N702-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N703-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N704-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N705-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N706-400k-AnnData.h5ad>
+<https://zenodo.org/records/10852529/files/N707-400k-AnnData.h5ad>
 
 Al importar los archivos, es importante que sean leídos como h5ad, de lo contrario, se debe cambiar el tipo de archivo a h5ad. 
 

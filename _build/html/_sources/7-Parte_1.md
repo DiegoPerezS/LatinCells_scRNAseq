@@ -1,4 +1,4 @@
-# Parte 1: Generación de matrices de células únicas usando Alevin
+# Generación de matrices de células únicas usando Alevin
 
 Adaptado desde la página de entrenamiento en Galaxy:
 
